@@ -90,6 +90,7 @@ html, body {
 .link {
   margin-right: 40px;
   text-decoration: none;
+  color: $color-primary;
 }
 
 input::selection {
