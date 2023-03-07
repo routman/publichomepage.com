@@ -5,7 +5,7 @@
     <div v-if="this.status == 'error'" class="close icon"></div>
   </div>
   <input v-model="this.contents.subtitle" placeholder="enter subtitle here" v-on:keyup="saveSubtitle()" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-  <textarea v-model="this.contents.main" v-on:keyup="saveMain()" placeholder="enter main contents here"></textarea>
+  <textarea v-model="this.contents.main" v-on:keyup="saveMain()" placeholder="enter main contents here" dir="ltr"></textarea>
 </template>
 
 <script>

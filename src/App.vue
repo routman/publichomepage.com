@@ -7,10 +7,9 @@
     <router-view class="page"/>
     
     <nav id="nav">
-      <!-- <router-link class="link" to="/">Home</router-link> -->
-      <!-- <router-link class="link" to="/about">about</router-link> -->
-      <a class="link" href="https://github.com/routman/publichomepage.com" target="_blank" rel="noopener">source</a>
-      <a class="link" href="https://publicnote.com" target="_blank" rel="noopener">publicnote</a>
+      <router-link class="menu link" to="/about" v-if="!isAbout">about</router-link>
+      <router-link class="menu link" to="/" v-if="isAbout">home</router-link>
+      <a class="menu link" href="https://publicnote.com" target="_blank" rel="noopener">publicnote</a>
     </nav>
     
   </div>
@@ -18,7 +17,11 @@
 
 <script>
 export default {
-  
+    computed: {
+        isAbout() {
+            return this.$route.name == 'about'
+        }
+    }
 }
 </script>
 
@@ -48,6 +51,7 @@ html, body {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  height: 100%;
 }
 
 .page {
@@ -56,6 +60,8 @@ html, body {
   -ms-overflow-style: none;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
 }
 .page::-webkit-scrollbar {
   display: none;
@@ -76,11 +82,13 @@ html, body {
 
 .subtitle {
   flex-grow: 0;
-  font-size: 20px;
+  margin-bottom: 12px;
+  line-height: 40px;
 }
 
 #nav {
   flex-grow: 0;
+  padding-top: 12px;
 }
 
 #logo {
@@ -88,9 +96,12 @@ html, body {
 }
 
 .link {
-  margin-right: 40px;
   text-decoration: none;
   color: $color-primary;
+}
+
+.menu { 
+  margin-right: 40px;
 }
 
 input::selection {
@@ -117,15 +128,13 @@ input:focus, textarea:focus {
 input {
   flex-grow: 0;
   line-height: 40px;
-  width: calc(100% - 32px);
-  margin: 0 0 20px 0;
+  margin: 0 0 12px 0;
   padding: 0;
 }
 
 textarea {
   flex-grow: 1;
   width: 100%;
-  height: calc(100% - 80px);
   padding: 0;
   line-height: 20px;
   overflow-y: scroll;
